@@ -9,7 +9,7 @@
             :thom   []
             :jonny  []})
 
-(defn seller? [person-name]
+(defn person-is-seller [person-name]
   (->> person-name
        (name)
        (seq)
@@ -22,8 +22,8 @@
     (and (< 0 (count search-queue))
          (cond
            (.contains searched person) (recur persons searched)
-           (seller? person) (do (println (name person) "is a mango seller!")
-                                true)
+           (person-is-seller person) (do (println (name person) "is a mango seller!")
+                                         true)
            :else (recur (concat persons (get graph person))
                         (conj searched person))))))
 
